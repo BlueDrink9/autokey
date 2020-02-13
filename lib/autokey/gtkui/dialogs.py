@@ -36,6 +36,8 @@ from ..iomediator.key import Key
 # from . import configwindow
 from .configwindow0 import get_ui
 
+from .. import baseUIActions
+
 logger = __import__("autokey.logger").logger.get_logger(__name__)
 
 WORD_CHAR_OPTIONS = {
@@ -534,17 +536,8 @@ class WindowFilterSettingsDialog(DialogBase):
             self.triggerRegexEntry.set_text(item.get_filter_regex())
             self.recursiveButton.set_active(item.isRecursive)
 
-    # It seriously bugs me how much duplication there is between the two GUIs.
     def save(self, item):
-        regex = self.get_filter_text()
-        try:
-            item.set_window_titles(regex)
-        except re.error:
-            logger.error(
-                    "Invalid window filter regex: '{}'. \
-                            Discarding without saving.".format(regex)
-                            )
-        item.set_filter_recursive(self.get_is_recursive())
+        baseUIActions.save(self, item)
 
     def reset(self):
         self.triggerRegexEntry.set_text("")

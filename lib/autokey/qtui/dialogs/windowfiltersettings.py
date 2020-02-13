@@ -21,6 +21,7 @@ from .detectdialog import DetectDialog
 
 from autokey import iomediator
 from autokey import model
+from autokey import baseUIActions
 
 logger = __import__("autokey.logger").logger.get_logger(__name__)
 
@@ -50,15 +51,7 @@ class WindowFilterSettingsDialog(*ui_common.inherits_from_ui_file_with_name("win
             self.apply_recursive_check_box.setChecked(item.isRecursive)
 
     def save(self, item):
-        regex = self.get_filter_text()
-        try:
-            item.set_window_titles(regex)
-        except re.error:
-            logger.error(
-                    "Invalid window filter regex: '{}'. \
-                            Discarding without saving.".format(regex)
-                            )
-        item.set_filter_recursive(self.get_is_recursive())
+        baseUIActions.save(self, item)
 
     def get_is_recursive(self):
         return self.apply_recursive_check_box.isChecked()
