@@ -17,13 +17,15 @@ from unittest.mock import MagicMock, patch
 import pytest
 from hamcrest import *
 
-from autokey.qtui import dialogs
-from autokey.qtui.dialogs import WindowFilterSettingsDialog
+import autokey
+# from autokey.qtui import dialogs
+# from autokey.qtui.dialogs import WindowFilterSettingsDialog
 
-@pytest.skip(reason="unfinished test implementation")
+# @pytest.mark.skip(reason="unfinished test implementation")
 def test_WindowFilterSettingsDialog_save():
+    dialog=MagicMock(autokey.qtui.dialogs.windowfiltersettings.WindowFilterSettingsDialog)
     with \
             patch("autokey.qtui.dialogs.WindowFilterSettingsDialog.get_is_recursive"), \
             patch("autokey.qtui.dialogs.WindowFilterSettingsDialog.get_filter_text", return_value=".*"):
-        WindowFilterSettingsDialog.save(item)
+        dialog.save(item)
 

@@ -17,10 +17,10 @@ from unittest.mock import MagicMock, patch
 import pytest
 from hamcrest import *
 
-from autokey.gtkui import dialogs
-from autokey.gtkui.dialogs import WindowFilterSettingsDialog
+# from autokey.gtkui import dialogs
+# from autokey.gtkui.dialogs import WindowFilterSettingsDialog
 
-@pytest.skip(reason="unfinished test implementation")
+@pytest.mark.skip(reason="unfinished test implementation")
 def test_WindowFilterSettingsDialog_save():
     with \
             patch("autokey.gtkui.dialogs.WindowFilterSettingsDialog.get_is_recursive"), \
